@@ -1,1 +1,1 @@
-## Omegle clone using WebRTC (p2p)
+## Omegle clone using Socket.io 
