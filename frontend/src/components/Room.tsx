@@ -199,11 +199,46 @@ export const Room = ({
         }
     }, [localVideoRef])
 
-    return <div>
-        Hi {name}
-        <video autoPlay width={400} height={400} ref={localVideoRef} />
-        {lobby ? "Waiting to connect you to someone" : null}
-        <video autoPlay width={400} height={400} ref={remoteVideoRef} />
-    </div>
-}
+    return (
+        <div className="flex flex-col items-center justify-center h-screen bg-gray-900 text-white">
+            {/* Title Centered */}
+            <h1 className="text-4xl font-bold mb-6 text-center">Welcome to Omegle Clone</h1>
 
+            <div className="flex items-center justify-center space-x-10">
+                {/* Left - User Video */}
+                <div className="flex flex-col items-center w-80 h-80 bg-gray-800 rounded-lg shadow-lg border-2 border-gray-700 overflow-hidden">
+                    <video 
+                        autoPlay 
+                        width="100%" 
+                        height="100%" 
+                        ref={localVideoRef} 
+                        className="object-cover w-full h-full"
+                    />
+                    <p className="mt-2 text-lg text-gray-300">{name}</p>
+                </div>
+
+                {/* Right - Stranger Video */}
+                <div className="flex flex-col items-center w-80 h-80 bg-gray-800 rounded-lg shadow-lg border-2 border-gray-700 overflow-hidden">
+                    {!remoteVideoRef.current ? (
+                        <div className="absolute inset-0 flex items-center justify-center bg-gray-800">
+                            <div className="w-12 h-12 border-4 border-gray-300 border-t-transparent rounded-full animate-spin"></div>
+                        </div>
+                    ) : null}
+                    <video 
+                        autoPlay 
+                        width="100%" 
+                        height="100%" 
+                        ref={remoteVideoRef} 
+                        className="object-cover w-full h-full"
+                    />
+                    <p className="mt-2 text-lg text-gray-300">Stranger</p>
+                </div>
+            </div>
+
+            {/* Lobby Message */}
+            {lobby ? <p className="text-lg text-gray-300 mt-6">Waiting to connect you to someone...</p> : null}
+        </div>
+
+
+    );
+}

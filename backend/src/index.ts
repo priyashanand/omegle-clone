@@ -13,7 +13,9 @@ const io = new Server(server, {
     origin: "*"
   }
 });
-
+app.get('/', (req,res)=>{
+  res.send('<h1> hi this is omeggle backend</h1>')
+})
 const userManager = new UserManager();
 
 io.on('connection', (socket: Socket) => {
